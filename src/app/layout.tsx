@@ -1,3 +1,9 @@
+// Layout wraps the entire application
+// it is what is shared in every page
+// if there is a common component
+// you can you the layout to ensure that
+// the component is shared with every page
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -15,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={inter.className}>{children}</body>
     </html>
   )
