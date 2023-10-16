@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import bcrypt from 'bcrypt'
 
 const userSchema = new Schema({
   username: {
@@ -15,7 +16,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: 'string',
+    required: [true, 'Please provide a password'],
     trim: true,
     minlength: 8,
   },
@@ -32,6 +33,15 @@ const userSchema = new Schema({
   forgotPasswordTokenExpiry: Date,
   verifyToken: String,
   verifyTokenExpiry: Date,
+})
+
+userSchema.pre('save', async function (next) {
+  // Hash and encrypt the password before saving to database
+  if (this.isModified('password')) {
+    const saltRounds = 10
+    this.password = await bcrypt.hash(this.password, saltRounds)
+  }
+  next()
 })
 
 const User = model('User', userSchema)
