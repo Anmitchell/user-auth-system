@@ -7,6 +7,7 @@ connect()
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json()
+    const { username, email, password } = reqBody
     console.log(reqBody)
 
     // Check if user already exists
@@ -18,13 +19,20 @@ export async function POST(request: NextRequest) {
 
     // Create new user if they do not exist
     const newUser = new User({
-      user.username,
-      user.email,
-      user.password,
+      username,
+      email,
+      password,
     })
 
     // New user to database
-    await newUser.save()
+    const savedUser = await newUser.save()
+    console.log(savedUser)
+
+    return NextResponse.json({
+      message: 'User created successfully',
+      success: true,
+    })
+
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
