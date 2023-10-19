@@ -14,14 +14,14 @@ export default function LoginPage() {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2 bg-teal-400'>
-      <div className='flex flex-col items-center justify-center bg-gray-800 p-5 rounded-sm'>
+      <div className='flex flex-col items-center justify-center bg-gray-800 p-5 rounded-sm text-white w-1/5 h-1/5'>
         <h1 className='text-4xl mb-2'>Login</h1>
         <hr />
 
         {/* EMAIL */}
         <label htmlFor='email'>email</label>
         <input
-          className='p-2 border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 pl-3'
+          className='p-2 border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 pl-3 text-black'
           id='email'
           type='text'
           value={user.email}
@@ -34,7 +34,7 @@ export default function LoginPage() {
         {/* PASSWORD */}
         <label htmlFor='password'>password</label>
         <input
-          className='p-2 border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600'
+          className='p-2 border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black'
           id='password'
           type='text'
           value={user.password}
@@ -50,7 +50,10 @@ export default function LoginPage() {
         >
           Login
         </button>
-        <Link href='/signup'>Visit Signup page</Link>
+        <Link href='/signup'>
+          <p className='text-sm'>
+            No account? <span className='text-lg text-teal-400 font-bold'>CREATE</span>
+            </p></Link>
       </div>
     </div>
   )
